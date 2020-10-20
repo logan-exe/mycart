@@ -1,0 +1,33 @@
+ul {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.cartButton {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.mainCard {
+  padding-bottom: 40px;
+}
+
+.description {
+  padding: 20px;
+}
+
+button {
+  background-color: #fac42f; /* Green */
+  border: none;
+  padding: 10px;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #fff222;
+}

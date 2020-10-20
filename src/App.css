@@ -12,16 +12,12 @@
   padding-left: 40px;
 }
 .body {
-  background-color: black;
-  height: 100px;
 }
 .logo {
   color: aliceblue;
   text-decoration: none;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   height: 40px;
   background-color: #616c6f;
@@ -30,7 +26,21 @@
   align-items: center;
   color: aliceblue;
 }
-
+a {
+  text-decoration: none;
+}
 a:hover {
   color: orange;
+}
+
+.body {
+  display: flex;
+}
+.mainComponent {
+  background-color: beige;
+  width: 75%;
+}
+.sideBar {
+  width: 25%;
+  background-color: aliceblue;
 }
