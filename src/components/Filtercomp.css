@@ -1,0 +1,12 @@
+.filterbody {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.filterbody div {
+  display: flex;
+}
+
+p {
+  padding-right: 10px;
+}

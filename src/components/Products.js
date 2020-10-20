@@ -12,7 +12,7 @@ export default class Products extends Component {
               <a href="">
                 <img
                   src={product.image}
-                  alt="no image to display"
+                  alt="nothing to display"
                   height="300px"
                   width="300px"
                 />
