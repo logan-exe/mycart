@@ -5,14 +5,17 @@ import "./App.css";
 import data from "./data.json";
 import Products from "./components/Products";
 import Filtercomp from "./components/Filtercomp";
+import Cart from "./components/Cart";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       products: data.products,
+      cartItems: [],
       size: "",
       sort: "",
+      total: 0,
     };
   }
   sortProducts = (event) => {
@@ -56,6 +59,40 @@ class App extends React.Component {
       });
     }
   };
+
+  addToCart = (product) => {
+    const preCartItems = this.state.cartItems.slice();
+    let isAdded = false;
+    let mytot = 0;
+    preCartItems.forEach((item) => {
+      if (item._id === product._id) {
+        item.count++;
+        isAdded = true;
+      }
+    });
+    if (!isAdded) {
+      preCartItems.push({ ...product, count: 1 });
+    }
+
+    preCartItems.forEach((item) => (mytot += item.price * item.count));
+    mytot = parseFloat(mytot.toFixed(2));
+    this.setState({
+      cartItems: preCartItems,
+      total: mytot,
+    });
+  };
+
+  // myTotal = () => {
+
+  // };
+  removeItem = (product) => {
+    const myCur = this.state.cartItems.slice();
+
+    console.log(myCur);
+    this.setState({
+      cartItems: myCur.filter((x) => x._id !== product._id),
+    });
+  };
   render() {
     return (
       <div className="App">
@@ -75,9 +112,18 @@ class App extends React.Component {
                 sortProducts={this.sortProducts}
               />
             </div>
-            <Products Products={this.state.products} />
+            <Products
+              Products={this.state.products}
+              addToCart={this.addToCart}
+            />
           </div>
-          <div className="sideBar">sidebar</div>
+          <div className="sideBar">
+            <Cart
+              cartItems={this.state.cartItems}
+              total={this.state.total}
+              removeItem={this.removeItem}
+            />
+          </div>
         </div>
         <div className="footer">All rights reserved</div>
       </div>
