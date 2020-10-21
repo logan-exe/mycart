@@ -21,7 +21,9 @@ export default class Products extends Component {
 
               <div className="cartButton">
                 <h3>{"$" + product.price}</h3>
-                <button type="">Add to cart</button>
+                <button type="" onClick={() => this.props.addToCart(product)}>
+                  Add to cart
+                </button>
               </div>
             </div>
           ))}

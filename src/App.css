@@ -37,12 +37,11 @@ a:hover {
   display: flex;
 }
 .mainComponent {
-  background-color: beige;
   width: 75%;
 }
 .sideBar {
   width: 25%;
-  background-color: aliceblue;
+  border-left: 1px solid black;
 }
 
 .filter {

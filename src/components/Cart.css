@@ -1,0 +1,24 @@
+.eachItem {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+}
+
+.eachItem p {
+  padding-left: 10px;
+}
+.removeItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.myheader {
+  padding: 20px;
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
