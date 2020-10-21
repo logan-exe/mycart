@@ -12,10 +12,14 @@ class App extends React.Component {
     super();
     this.state = {
       products: data.products,
-      cartItems: [],
+      cartItems: localStorage.getItem("cartItems")
+        ? JSON.parse(localStorage.getItem("cartItems"))
+        : [],
       size: "",
       sort: "",
-      total: 0,
+      total: localStorage.getItem("total")
+        ? JSON.parse(localStorage.getItem("total"))
+        : 0,
     };
   }
   sortProducts = (event) => {
@@ -80,18 +84,44 @@ class App extends React.Component {
       cartItems: preCartItems,
       total: mytot,
     });
+
+    localStorage.setItem("total", JSON.stringify(mytot));
+    localStorage.setItem("cartItems", JSON.stringify(preCartItems));
   };
+
+  // check = () => {
+  //   this.setState({
+  //     check: true,
+  //   });
+  //   console.log(this.state.check);
+  //   console.log("check function loogged");
+  // };
 
   // myTotal = () => {
 
   // };
   removeItem = (product) => {
     const myCur = this.state.cartItems.slice();
+    let mytot = 0;
+    myCur
+      .filter((x) => x._id !== product._id)
+      .forEach((item) => (mytot += item.price * item.count));
 
     console.log(myCur);
+    mytot = parseFloat(mytot.toFixed(2));
     this.setState({
       cartItems: myCur.filter((x) => x._id !== product._id),
+      total: mytot,
     });
+    localStorage.setItem("total", JSON.stringify(mytot));
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(myCur.filter((x) => x._id !== product._id))
+    );
+  };
+
+  createOrder = (order) => {
+    alert(`the order has been made by ${order.name}`);
   };
   render() {
     return (
@@ -122,6 +152,7 @@ class App extends React.Component {
               cartItems={this.state.cartItems}
               total={this.state.total}
               removeItem={this.removeItem}
+              createOrder={this.createOrder}
             />
           </div>
         </div>
